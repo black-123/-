@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>前端开发工程师面试笔记 | 付志鸿简历技术点梳理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5f7fb;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, 'Noto Sans', sans-serif;
+            line-height: 1.5;
+            color: #1e293b;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        /* 头部 */
+        .header {
+            padding: 1.8rem 2rem 1.2rem 2rem;
+            border-bottom: 1px solid #e9eef3;
+            background: #ffffff;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #1f2b3c, #2c3e66);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.4rem;
+        }
+
+        .header .sub {
+            color: #5b6e8c;
+            font-size: 0.95rem;
+            border-left: 3px solid #3b82f6;
+            padding-left: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /* 搜索栏 */
+        .search-bar {
+            padding: 1rem 2rem;
+            background: #fafcff;
+            border-bottom: 1px solid #eef2f8;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            justify-content: space-between;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 240px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.7rem 1rem 0.7rem 2.5rem;
+            border: 1px solid #cfdee9;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            background: white;
+            transition: 0.2s;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .search-box input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8ba0bc;
+            font-weight: 400;
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        .counter {
+            font-size: 0.85rem;
+            background: #eef2ff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 40px;
+            color: #1e40af;
+            font-weight: 500;
+        }
+
+        /* 表格容器 */
+        .table-wrapper {
+            overflow-x: auto;
+            scroll-behavior: smooth;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            min-width: 800px;
+        }
+
+        th {
+            text-align: left;
+            padding: 1rem 1.2rem;
+            background-color: #f8fafd;
+            font-weight: 600;
+            color: #0f2b3d;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+            position: sticky;
+            top: 0;
+            background-color: #f8fafd;
+            backdrop-filter: blur(2px);
+        }
+
+        td {
+            padding: 1.2rem 1.2rem;
+            border-bottom: 1px solid #edf2f7;
+            vertical-align: top;
+            background-color: white;
+        }
+
+        .question-col {
+            width: 32%;
+            font-weight: 500;
+            color: #0c4a6e;
+            border-right: 1px solid #ecf3f9;
+            background-color: #fefefe;
+        }
+
+        .answer-col {
+            width: 68%;
+            color: #2c3f5c;
+            line-height: 1.55;
+        }
+
+        /* 代码风格 */
+        code, .code-inline {
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 8px;
+            font-size: 0.85em;
+            color: #d14;
+            word-break: break-word;
+        }
+
+        .question-col strong {
+            color: #075985;
+        }
+
+        /* 特殊标记 */
+        .badge-prompt {
+            background: #e6f7ec;
+            color: #2b6e3b;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-left: 0.4rem;
+            vertical-align: middle;
+        }
+
+        /* 响应式 & 行高亮 */
+        tr:hover td {
+            background-color: #fafcff;
+        }
+
+        .no-result {
+            text-align: center;
+            padding: 3rem;
+            color: #6f8fbb;
+            font-size: 1rem;
+        }
+
+        footer {
+            padding: 1.2rem 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7c8ea0;
+            border-top: 1px solid #eef2f8;
+            background: #ffffff;
+        }
+
+        @media (max-width: 720px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+            .header h1 {
+                font-size: 1.4rem;
+            }
+            td, th {
+                padding: 0.9rem 0.8rem;
+            }
+            .question-col, .answer-col {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📄 前端开发工程师 · 面试技术笔记</h1>
+        <div class="sub">
+            基于7年经验简历深度梳理 | 涵盖原理/框架/Three.js/大模型/性能优化/工程化 | 含追问深度答案
+        </div>
+    </div>
+    <div class="search-bar">
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="filterInput" placeholder="搜索问题或关键词 (例如 Three.js, 虚拟滚动, 微前端, OCR...)" autocomplete="off">
+        </div>
+        <div class="counter" id="rowCounter">共 30 条记录</div>
+    </div>
+    <div class="table-wrapper">
+        <table id="qaTable">
+            <thead>
+                <tr><th class="question-col">📌 面试问题（含追问）</th><th class="answer-col">✅ 参考答案（整合追问深度解析）</th></tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- 数据通过js动态加载，确保内容准确、易维护，同时保证HTML整洁 -->
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        ⚡ 前端面试笔记 · 基于付志鸿简历技术点生成 | 可搜索过滤 | 适合GitHub Pages部署
+    </footer>
+</div>
+
+<script>
+    // 严格按照之前markdown表格的内容 (问题和答案对) 共30条
+    const qaData = [
+        { q: "1. 事件循环与渲染流程：请解释浏览器事件循环机制，宏任务与微任务的执行顺序。追问：页面渲染是在哪个阶段触发的？如何利用 `requestAnimationFrame` 或 `requestIdleCallback` 优化？", 
+          a: "事件循环：执行栈清空后，先执行所有微任务（Promise.then、MutationObserver），再取一个宏任务（setTimeout、I/O、UI渲染）执行，如此循环。渲染通常在宏任务后、下一个宏任务前，由浏览器按帧率决定。`requestAnimationFrame` 在渲染前执行，适合动画；`requestIdleCallback` 在空闲时执行，适合低优先级任务（如埋点上报）。" },
+        { q: "2. Web 安全：列举常见 Web 安全攻击方式及防御。追问：富文本内容如何防止 XSS？", 
+          a: "常见攻击：XSS、CSRF、点击劫持、SQL注入。防御XSS：输入转义、CSP、避免 innerHTML、cookie 设置 HttpOnly。富文本：使用白名单过滤库（如 DOMPurify），保留安全标签和属性。" },
+        { q: "3. TypeScript 工程使用：举例说明泛型和类型守卫的使用。追问：如何设计一个类型安全的 API 响应结构？", 
+          a: "泛型：`useRequest<T>(url: string): Promise<T>`。类型守卫：`isUser(obj): obj is User`。统一响应结构：`interface ApiResponse<T> { code: number; data: T; message: string }`，请求时 `fetch<ApiResponse<User>>('/user')`。" },
+        { q: "4. Vue2/3 响应式原理：Vue2 的 defineProperty 与 Vue3 的 Proxy 区别。追问：Vue3 如何监听数组？`ref` 与 `reactive` 使用场景？", 
+          a: "Vue2 递归劫持，无法监听属性增删，数组需重写方法；Vue3 Proxy 可监听增删、数组索引和 length 变化。Vue3 通过 Proxy 拦截 get/set 实现数组监听。`ref` 用于基本类型或需要 .value 访问；`reactive` 用于对象，但不能直接替换整个对象。" },
+        { q: "5. 组合式 API vs 选项式 API：优势是什么？追问：实现 `useLocalStorage` 组合式函数。", 
+          a: "优势：逻辑复用（useXXX）、按功能组织代码、TypeScript 友好。实现：`function useLocalStorage<T>(key, defaultValue) { const data = ref(JSON.parse(localStorage.getItem(key) ?? defaultValue)); watch(data, val => localStorage.setItem(key, JSON.stringify(val)), { deep: true }); return data; }`" },
+        { q: "6. 跨端状态管理（多端购物车数据同步）：未登录与登录后购物车合并方案。追问：并发冲突如何保证一致性？", 
+          a: "未登录存 localStorage，登录后将本地购物车与后端合并（按 id 合并数量），清空本地存储。并发：使用乐观锁、版本号，前端锁住提交按钮或请求队列 + 重试去重。" },
+        { q: "7. React vs Vue：了解 React 哪些特性？切换最大挑战？追问：`useEffect` 与 Vue `watch` 异同？", 
+          a: "了解函数组件、hooks（useState/useEffect）、JSX。最大挑战：React 手动优化（memo/useCallback），Vue 自动依赖追踪。`useEffect` 异步执行，依赖数组控制；Vue `watch` 监听特定数据，默认懒执行。" },
+        { q: "8. 微前端方案：了解哪些方案？如何解决 JS 沙箱和样式隔离？追问：什么场景适合微前端？", 
+          a: "方案：qiankun、无界（WebComponent）、Module Federation。JS 沙箱：proxy 模拟 window；样式隔离：Shadow DOM 或 scoped CSS。适用：大型项目拆分子应用、多团队协作、渐进式升级。" },
+        { q: "9. Vite vs Webpack：Vite 快的原因？生产打包劣势？追问：如何优化 Webpack 构建速度？", 
+          a: "Vite 开发时利用浏览器 ESM 按需编译，冷启动快；生产打包用 Rollup，生态不如 Webpack。Webpack 优化：cache-loader、thread-loader、DLLPlugin、减少 resolve 范围。" },
+        { q: "10. 组件库设计与按需加载：设计组件库需考虑哪些方面？如何按需加载？追问：样式隔离方案？", 
+          a: "考虑：API 一致性、样式隔离、主题定制、文档、测试、按需加载。按需加载：babel-plugin-import 或 ES Module Tree Shaking。样式隔离：CSS Modules、CSS-in-JS、Shadow DOM，倾向 CSS Modules + BEM。" },
+        { q: "11. Three.js 场景构建与性能：搭建储能系统流程？追问：实时数据映射到模型的性能优化？", 
+          a: "流程：场景、相机、渲染器，加载 glTF，添加灯光，动画循环。实时数据通过 WebSocket 更新材质颜色/位置。优化：合并静态网格、InstancedMesh、纹理压缩、LOD、throttle 批量更新。" },
+        { q: "12. 模型加载与交互：如何处理大模型加载？追问：高面数模型的点击检测优化？", 
+          a: "大模型：Draco 压缩，异步加载 + 进度条。射线检测：raycaster.intersectObjects。高面数：八叉树或 BVH 加速，或仅对主要设备启用点击。" },
+        { q: "13. thingJS 与 Three.js 协同：thingJS 封装了哪些能力？追问：存在的限制？", 
+          a: "thingJS 封装园区搭建、摄像机控件、事件管理。结合：thingJS 搭建基础场景，Three.js 添加高级特效。限制：thingJS 自定义着色器有限，需直接操作 Three.js 的 renderer。" },
+        { q: "14. Prompt 工程与结构化输出：如何设计 Prompt 输出固定 JSON？追问：模型返回不符合预期时的降级？", 
+          a: "设计：明确要求输出 JSON，设置 temperature=0。降级：检查 JSON 格式，失败用正则提取，再失败回退到默认规则或人工介入。" },
+        { q: "15. 数字人客服的对话流与意图识别：如何管理多轮对话上下文？追问：模糊问题如何处理？", 
+          a: "使用会话 ID 存储历史消息，每次请求带最近 3-5 轮。模糊问题：反问澄清，给出候选按钮（如“您指的是哪个表？”）。" },
+        { q: "16. 日志闭环与迭代流程：如何轮值维护 Prompt？追问：如何避免频繁修改导致不稳定？", 
+          a: "用户交互生成日志，轮值人员分析并优化 Prompt，用 A/B 测试验证。稳定性：Prompt 版本管理，灰度发布，对比成功率与用户反馈。" },
+        { q: "17. 长列表虚拟滚动：核心逻辑？追问：动态高度如何处理？白屏优化？", 
+          a: "核心：可视区起始索引，只渲染可见项，监听滚动。动态高度：维护每项实际高度和位置缓存（如 react-window）。白屏：增加缓冲区（多渲染几屏）或骨架屏。" },
+        { q: "18. 首屏加载优化：具体手段？追问：WebP 兼容性处理？", 
+          a: "手段：图片懒加载+WebP、路由懒加载、预加载关键资源、CDN、代码压缩、内联关键 CSS。WebP：通过 `<picture>` 标签或 accept 头检测，降级原格式。" },
+        { q: "19. 前端监控与异常排查：如何监控线上错误？白屏如何排查？追问：Source Map 管理？", 
+          a: "使用 Sentry 捕获错误，上报用户操作栈。白屏：检查关键 DOM 是否存在，上报环境信息。Source Map：上传内网监控平台，不暴露公网。" },
+        { q: "20. 前端架构设计：从0到1项目的技术栈与目录结构？追问：如何推动团队遵守规范？", 
+          a: "技术栈：Vue3+TS+Vite+Pinia+Ant Design Vue。目录：按功能分 views、components、composables 等。规范：ESLint+Prettier+husky，CI 检查，定期代码评审。" },
+        { q: "21. 组件库封装与 npm 包管理：如何发布和版本管理？追问：破坏性更新如何迁移？", 
+          a: "使用 vite-plugin-dts 生成类型声明，npm version 语义化版本，发布私有 npm 源。破坏性更新：major 版本，CHANGELOG 通知，预留过渡期。" },
+        { q: "22. 5人团队任务拆分与进度跟进：如何分配和跟踪？追问：接口变更导致返工怎么办？", 
+          a: "拆解子任务（2-4小时），按技能分配，Jira/Trello 跟踪，站会同步。接口变更：后端提供 Mock 服务（Swagger），前端并行，变更需评审通知。" },
+        { q: "23. 大文件分片上传与断点续传：具体实现？追问：网络中断后如何续传？", 
+          a: "分片（如2MB），计算 hash，并发上传，服务端合并。断点续传：请求已传分片列表，跳过已传。本地缓存 IndexedDB（localforage）存储分片序号。" },
+        { q: "24. OCR 文档识别与高亮交互：如何实现点击文本填充表单？追问：低置信度结果如何人工校正？", 
+          a: "PDF.js 渲染到 Canvas，叠加透明区域监听点击。校正：低置信度区域红框，点击弹窗编辑器，修改后同步后端并更新显示。" },
+        { q: "25. SKU 组件设计：笛卡尔积计算逻辑？追问：3x10x10 规格如何高效计算可选组合？", 
+          a: "笛卡尔积生成所有组合，映射库存/价格。用户选择时禁用无库存组合。1000种组合前端可接受；更大则后端预计算或位掩码加速。" },
+        { q: "26. 支付安全与幂等性：前端如何防篡改？追问：支付成功但未收到回调怎么办？", 
+          a: "使用后端下发的 nonce 和时间戳签名。幂等：订单号作为幂等键。补救：前端主动轮询订单状态，或从微信服务器查询，客服补单。" },
+        { q: "27. SQL 优化：常用优化手段？追问：索引失效场景？", 
+          a: "避免 SELECT *，使用索引，EXPLAIN 分析 type（const/ref/range 好）。索引失效：函数操作、隐式类型转换、LIKE '%abc'、OR 未全索引。" },
+        { q: "28. 后端部署经验：Nginx 部署前后端分离项目？追问：如何解决前端路由 404？", 
+          a: "Nginx 代理静态资源，`proxy_pass` 转发 API。路由 404：配置 `try_files $uri $uri/ /index.html`。PM2 管理 Node 进程。" },
+        { q: "29. 问题定位能力：线上按钮无反应且无报错，如何排查？追问：仅 iOS 微信内置浏览器出现？", 
+          a: "复现，检查环境、网络、事件绑定，用 debugger 断点。iOS 微信：使用 vConsole 调试，检查是否被拦截，或用 Safari 远程调试。" },
+        { q: "30. 技术热情与学习能力：最近研究什么？追问：下一个值得投入的前端方向？", 
+          a: "研究 WebAssembly + Three.js，Vue 编译原理。看好边缘计算 + Web AI（TensorFlow.js），前端承载更多智能任务。" }
+    ];
+
+    // 辅助函数：转义HTML特殊字符，但保留 <code> 样式（不主动转义代码标记，但安全起见文本转义即可）
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
+        });
+    }
+
+    // 处理内联代码：将反引号 `code` 渲染为 <code> 标签（简单处理）
+    function renderCodeInText(text) {
+        // 匹配 `xxx` 但不包括嵌套，支持反引号内部转义暂不处理，避免过于复杂
+        return text.replace(/`([^`]+)`/g, function(match, codeContent) {
+            return `<code class="code-inline">${escapeHtml(codeContent)}</code>`;
+        });
+    }
+
+    function renderRow(question, answer) {
+        // 对问题和答案分别进行转义 + 代码高亮
+        let safeQuestion = escapeHtml(question);
+        let safeAnswer = escapeHtml(answer);
+        // 增强代码可读性：渲染反引号
+        safeQuestion = renderCodeInText(safeQuestion);
+        safeAnswer = renderCodeInText(safeAnswer);
+        // 对部分关键词添加简单样式（可选）
+        return `<tr>
+            <td class="question-col">${safeQuestion}</td>
+            <td class="answer-col">${safeAnswer}</td>
+        </tr>`;
+    }
+
+    function renderTable(filterText = "") {
+        const tbody = document.getElementById("tableBody");
+        if (!tbody) return;
+        const lowerFilter = filterText.toLowerCase().trim();
+        let filteredData = qaData;
+        if (lowerFilter !== "") {
+            filteredData = qaData.filter(item => 
+                item.q.toLowerCase().includes(lowerFilter) || 
+                item.a.toLowerCase().includes(lowerFilter)
+            );
+        }
+        const rowCounter = document.getElementById("rowCounter");
+        if (rowCounter) rowCounter.innerText = `共 ${filteredData.length} 条记录`;
+        
+        if (filteredData.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="2" class="no-result">😕 没有找到匹配的面试问题，试试其他关键词（如：Three.js，虚拟滚动，微前端）</td></tr>`;
+            return;
+        }
+        
+        let htmlRows = "";
+        for (let item of filteredData) {
+            htmlRows += renderRow(item.q, item.a);
+        }
+        tbody.innerHTML = htmlRows;
+    }
+
+    // 初始化渲染 + 搜索绑定
+    document.addEventListener("DOMContentLoaded", () => {
+        renderTable("");
+        const filterInput = document.getElementById("filterInput");
+        if (filterInput) {
+            filterInput.addEventListener("input", (e) => {
+                renderTable(e.target.value);
+            });
+        }
+    });
+</script>
+</body>
+</html>
